@@ -156,7 +156,7 @@ def main(_):
   # correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
   # accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
   
-  print("test accuracy % g" % accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.lables, keep_prob: 1.0}))
+  print("test accuracy % g" % accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels, keep_prob: 1.0}))
   # # A red/black/blue colormap
   # cdict = {'red':[(0.0,  1.0,  1.0),
   #                 (0.25, 1.0,  1.0),
