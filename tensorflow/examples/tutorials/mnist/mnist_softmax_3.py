@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-# Lab1-2, 將正確率調製 0.99
+# Lab1-2, 將正確率調製趨近 0.99
 
 # Improve The Evaluate Accuracy
 
