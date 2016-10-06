@@ -1,10 +1,6 @@
 #-*- coding: utf-8 -*-
 
-<<<<<<< HEAD
-# Lab1-2, 將正確率提升至0.99 up
-=======
-# Lab1-2, 將正確率調製 0.99
->>>>>>> Lab1-2
+# Lab1-2, 將正確率調製趨近 0.99
 
 # Improve The Evaluate Accuracy
 
@@ -45,8 +41,7 @@ import matplotlib
 
 FLAGS = None
 
-<<<<<<< HEAD
-=======
+
 """
 Initializing ...
 """
@@ -73,22 +68,9 @@ def max_pool_2x2(x):
   return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
 
-
->>>>>>> Lab1-2
-
 def main(_):
   mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
 
-<<<<<<< HEAD
-  # Create the model
-  x = tf.placeholder(tf.float32, [None, 784])
-  W = tf.Variable(tf.zeros([784, 10]))
-  b = tf.Variable(tf.zeros([10]))
-  y = tf.matmul(x, W) + b
-
-  # Define loss and optimizer
-  y_ = tf.placeholder(tf.float32, [None, 10])
-=======
   # Values that we will input during the computation
   x = tf.placeholder(tf.float32, [None, 784])
   y = tf.placeholder(tf.float32, [None, 10])
@@ -137,7 +119,6 @@ def main(_):
 
   # # Define loss and optimizer
   # y_ = tf.placeholder(tf.float32, [None, 10])
->>>>>>> Lab1-2
 
   # The raw formulation of cross-entropy,
   #
@@ -148,47 +129,6 @@ def main(_):
   #
   # So here we use tf.nn.softmax_cross_entropy_with_logits on the raw
   # outputs of 'y', and then average across the batch.
-<<<<<<< HEAD
-  cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(y, y_))
-  
-  # SGD for minimizing the cross-entropy (learning rate = 0.5)
-  train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
-
-  # Initialize the variables
-  sess = tf.InteractiveSession()
-  
-  # Train
-  tf.initialize_all_variables().run()
-  for _ in range(1000):
-    batch_xs, batch_ys = mnist.train.next_batch(100)
-    sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
-
-  # Test trained model
-  correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
-  accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-  print(sess.run(accuracy, feed_dict={x: mnist.test.images,
-                                      y_: mnist.test.labels}))
-  # A red/black/blue colormap
-  cdict = {'red':[(0.0,  1.0,  1.0),
-                  (0.25, 1.0,  1.0),
-                  (0.5,  0.0,  0.0),
-                  (1.0,  0.0,  0.0)],
-         'green':[(0.0,  0.0,  0.0),
-                  (1.0,  0.0,  0.0)],
-          'blue':[(0.0,  0.0,  0.0),
-                  (0.5,  0.0,  0.0),
-                  (0.75, 1.0,  1.0),
-                  (1.0,  1.0,  1.0)]}
-  redblue = matplotlib.colors.LinearSegmentedColormap('red_black_blue',cdict,256)
-  
-  wts = W.eval(sess)
-  for i in range(0,10):
-    im = wts.flatten()[i::10].reshape((28,-1))
-    plt.imshow(im, cmap = redblue, clim=(-1.0, 1.0))
-    plt.colorbar()
-    print("Digit %d" % i)
-    plt.show()
-=======
   cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(y_hat, y))
   
   # # SGD for minimizing the cross-entropy (learning rate = 0.5)
@@ -236,7 +176,6 @@ def main(_):
   #   plt.colorbar()
   #   print("Digit %d" % i)
   #   plt.show()
->>>>>>> Lab1-2
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
