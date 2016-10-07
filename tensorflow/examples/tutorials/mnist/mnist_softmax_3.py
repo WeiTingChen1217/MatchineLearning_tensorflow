@@ -43,7 +43,10 @@ FLAGS = None
 
 
 """
-Initializing ...
+Initializing variables to zero, when the activation of
+a layer is made of ReLUs will yield a null gradient, this generates
+dead precisely a ReLU is not differentiable in 0, but it
+is differentiable in any epsilon bubble defined around 0.
 """
 
 # init for a weight variable
