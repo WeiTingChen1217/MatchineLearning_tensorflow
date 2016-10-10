@@ -34,9 +34,9 @@ import argparse
 from tensorflow.examples.tutorials.mnist import input_data
 
 import tensorflow as tf
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-import matplotlib
+# import matplotlib.pyplot as plt
+# import matplotlib.cm as cm
+# import matplotlib
 
 
 FLAGS = None
@@ -147,7 +147,7 @@ def main(_):
   accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
   
   # Train
-  for n in range(20000):
+  for n in range(10000):
     batch = mnist.train.next_batch(50)
     if n % 100 == 0:
       train_accuracy= accuracy.eval(feed_dict={x:batch[0], y: batch[1], keep_prob: 1.0})
@@ -158,7 +158,7 @@ def main(_):
   # correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
   # accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
   
-  print("test accuracy % g" % accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels, keep_prob: 1.0}))
+  print("test accuracy %g" % accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels, keep_prob: 1.0}))
   # # A red/black/blue colormap
   # cdict = {'red':[(0.0,  1.0,  1.0),
   #                 (0.25, 1.0,  1.0),
