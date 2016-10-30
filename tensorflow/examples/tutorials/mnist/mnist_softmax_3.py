@@ -136,11 +136,12 @@ def main(_):
   
   # # SGD for minimizing the cross-entropy (learning rate = 0.5)
   # train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+  # 使用 Adam 優化器
   train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 
   # Start the new session & Initialize the variables
   sess = tf.InteractiveSession()
-  tf.initialize_all_variables().run()
+tf.initialize_all_variables().run() # 初始化所有變量
 
   # Define the accuracy
   correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_hat, 1))
@@ -149,7 +150,7 @@ def main(_):
   # Train
   for n in range(10000):
     batch = mnist.train.next_batch(50)
-    if n % 100 == 0:
+    if n % 100 == 0:    # 每 100 步輸出一下成果
       train_accuracy= accuracy.eval(feed_dict={x:batch[0], y: batch[1], keep_prob: 1.0})
       print ("step %d, training accuracy %g" % (n, train_accuracy))
     sess.run(train_step, feed_dict={x: batch[0], y: batch[1], keep_prob: 0.5})
