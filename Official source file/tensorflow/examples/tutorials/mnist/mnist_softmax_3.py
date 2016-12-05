@@ -31,12 +31,10 @@ from __future__ import print_function
 import argparse
 
 # Import data
-from tensorflow.examples.tutorials.mnist import input_data
+import input_data
 
 import tensorflow as tf
-# import matplotlib.pyplot as plt
-# import matplotlib.cm as cm
-# import matplotlib
+
 
 
 FLAGS = None
@@ -79,10 +77,10 @@ def main(_):
   y = tf.placeholder(tf.float32, [None, 10])
   
   # reshape vectors of size 784, to squares of size 28x28
-  x_image = tf.reshape(x, [-1, 28, 28, 1])
+  x_image = tf.reshape(x, [-1, 28, 28, 1]) # 第二維跟第三維是對應圖片的寬高，最後一維代表顏色的通道
 
   """1st layer: convolutional layer with max pooling"""
-  W_conv1 = weight_variable([5, 5, 1, 32])
+  W_conv1 = weight_variable([5, 5, 1, 32]) # 前兩個維度是patch的大小，接著是輸入的通道數目，後者是輸出的通道數目
   b_conv1 = bias_variable([32])
 
   h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
@@ -116,12 +114,6 @@ def main(_):
 
   y_hat = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
 
-  # y = tf.matmul(x, W) + b
-  # W = tf.Variable(tf.zeros([784, 10]))
-  # b = tf.Variable(tf.zeros([10]))
-
-  # # Define loss and optimizer
-  # y_ = tf.placeholder(tf.float32, [None, 10])
 
   # The raw formulation of cross-entropy,
   #
@@ -134,14 +126,14 @@ def main(_):
   # outputs of 'y', and then average across the batch.
   cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(y_hat, y))
   
-  # # SGD for minimizing the cross-entropy (learning rate = 0.5)
-  # train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+  
   # 使用 Adam 優化器
   train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 
+  
   # Start the new session & Initialize the variables
   sess = tf.InteractiveSession()
-tf.initialize_all_variables().run() # 初始化所有變量
+  tf.initialize_all_variables().run()
 
   # Define the accuracy
   correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_hat, 1))
@@ -154,32 +146,9 @@ tf.initialize_all_variables().run() # 初始化所有變量
       train_accuracy= accuracy.eval(feed_dict={x:batch[0], y: batch[1], keep_prob: 1.0})
       print ("step %d, training accuracy %g" % (n, train_accuracy))
     sess.run(train_step, feed_dict={x: batch[0], y: batch[1], keep_prob: 0.5})
-
-  # # Test trained model
-  # correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
-  # accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
   
   print("test accuracy %g" % accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels, keep_prob: 1.0}))
-  # # A red/black/blue colormap
-  # cdict = {'red':[(0.0,  1.0,  1.0),
-  #                 (0.25, 1.0,  1.0),
-  #                 (0.5,  0.0,  0.0),
-  #                 (1.0,  0.0,  0.0)],
-  #        'green':[(0.0,  0.0,  0.0),
-  #                 (1.0,  0.0,  0.0)],
-  #         'blue':[(0.0,  0.0,  0.0),
-  #                 (0.5,  0.0,  0.0),
-  #                 (0.75, 1.0,  1.0),
-  #                 (1.0,  1.0,  1.0)]}
-  # redblue = matplotlib.colors.LinearSegmentedColormap('red_black_blue',cdict,256)
   
-  # wts = W.eval(sess)
-  # for i in range(0,10):
-  #   im = wts.flatten()[i::10].reshape((28,-1))
-  #   plt.imshow(im, cmap = redblue, clim=(-1.0, 1.0))
-  #   plt.colorbar()
-  #   print("Digit %d" % i)
-  #   plt.show()
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()

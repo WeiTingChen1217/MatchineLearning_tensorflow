@@ -26,6 +26,6 @@ Hello, TensorFlow!
 
 ## 作業
 
-* [HW1 運行範例 MNIST for ML Beginners](https://github.com/WeiTingChen1217/MatchineLearning_tensorflow/blob/master/tensorflow/examples/tutorials/mnist/mnist_softmax_2.py)
-* [HW2 修改範例 MNIST for ML Beginners (->99%)](https://github.com/WeiTingChen1217/MatchineLearning_tensorflow/blob/master/tensorflow/examples/tutorials/mnist/mnist_softmax_3.py)
+* [HW1 運行範例 MNIST for ML Beginners](https://github.com/WeiTingChen1217/MatchineLearning_tensorflow/blob/master/Official%20source%20file/tensorflow/examples/tutorials/mnist/mnist_softmax_2.py)
+* [HW2 修改範例 MNIST for ML Beginners (->99%)](https://github.com/WeiTingChen1217/MatchineLearning_tensorflow/blob/master/Official%20source%20file/tensorflow/examples/tutorials/mnist/mnist_softmax_3.py)
 
