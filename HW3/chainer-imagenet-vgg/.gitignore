@@ -1,0 +1,9 @@
+*VGG.model
+DS_Store
+.remote-sync.json
+
+data
+images
+
+*.pyc
+*.model
